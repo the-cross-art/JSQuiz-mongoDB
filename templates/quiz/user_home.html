@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %} JS Quiz | Welcome {% endblock title %}
+{% block content %}
+
+	        <h2 class="text-center text-info">Congratulations!! You have successfully logged in.</h2>
+            <a href="{% url 'quiz:play' %}" class="btn btn-info">Let's play</a>
+
+{% endblock content %}
