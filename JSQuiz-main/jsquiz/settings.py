@@ -75,31 +75,18 @@ WSGI_APPLICATION = 'jsquiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'cluster1',
-#         'HOST': 'mongodb+srv://imrannaz326:nazir326@cluster1.vbsgz.mongodb.net/cluster1?retryWrites=true&w=majority',
-#         'USER' : 'imrannaz326',
-#         'PASSWORD' : 'nazir326',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'cluster1',
-
-        'CLIENT': {
-        'host':'mongodb+srv://imrannaz326:nazir326@cluster1.vbsgz.mongodb.net/cluster1?retryWrites=true&w=majority',
-        'username':'imrannaz326',
-        'password':'nazir326'
-        }
-
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER': 'imran',
+        'PASSWORD':'nazir326',
+        'HOST':'database-1.c8wv9hegmm83.us-east-2.rds.amazonaws.com',
+        'PORT':'5432',
     }
 }
 
-# mongodb://imrannaz326:nazir326@cluster1-shard-00-00.vbsgz.mongodb.net:27017,cluster1-shard-00-01.vbsgz.mongodb.net:27017,cluster1-shard-00-02.vbsgz.mongodb.net:27017/cluster1?ssl=true&replicaSet=atlas-8ni36d-shard-0&authSource=admin&retryWrites=true&w=majority
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
