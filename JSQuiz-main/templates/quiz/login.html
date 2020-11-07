@@ -56,7 +56,7 @@
                     </ul>
                 </nav><!-- .nav-menu -->
 
-                <a href="#about" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> LogIn</a>
+                <a href="{% url 'quiz:leaderboard' %}" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> LeaderBoard</a>
                 <!-- <nav class="nav-menu d-none d-lg-block">
                   <ul>
                     {% if not request.user.is_active %}
@@ -113,25 +113,12 @@
                     <span class="required">Password</span>
                 </label>
             </div>
-<!--            {{form }}-->
             <input class="get-started-form scrollto" type="submit" value="Log In"/>
             <br>
             <div class="text-center">
                 <p>or ...</p>
                 <a href="{% url 'quiz:register' %}" class="get-started-form scrollto">Create account</a>
             </div>
-<!--            <figure aria-hidden="true">-->
-<!--                <div class="person-body"></div>-->
-<!--                <div class="neck skin"></div>-->
-<!--                <div class="head skin">-->
-<!--                    <div class="eyes"></div>-->
-<!--                    <div class="mouth"></div>-->
-<!--                </div>-->
-<!--                <div class="hair"></div>-->
-<!--                <div class="ears"></div>-->
-<!--                <div class="shirt-1"></div>-->
-<!--                <div class="shirt-2"></div>-->
-<!--            </figure>-->
         </form>
     </div>
     <div>
@@ -140,10 +127,12 @@
         <section id="section-jumbotron"
                  class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">
             <div class="container text-center">
-                <h1 class="display-1 text-info">Let's Quiz</h1>
+                <h1 class="display-1 text-info">JS Quiz</h1>
+                <h6 class="display-1 text-info">Welcome, {{ request.user.username }} | </h6>
                 <p class="display-4 d-none d-sm-block">Test your skills and become a master.</p>
                 <p class="lead">We organize quizzes on various topics.</p>
                 <a href="{% url 'quiz:play' %}" class="btn btn-lg btn-info mt-1">Let's play</a>
+                <a href="{% url 'quiz:logout' %}" class="btn btn-lg btn-info mt-1">Logout</a>
                 <a href="{% url 'quiz:leaderboard' %}" class="btn btn-lg btn-info mt-1">Leaderboard</a>
             </div>
         </section>
