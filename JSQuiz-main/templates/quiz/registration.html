@@ -1,40 +1,173 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block title %} Let's Quiz | {{ title }} {% endblock title %}
-{% block content %}
-{% if not request.user.is_active %}
+{% load static %}
 
-     <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4">
-              <h1 class="mb-3 text-center">Create a new account</h1>
-              <form class="mb-3" method="POST" action="">
-                {% csrf_token %}
-		        {{form|crispy}}
-		        <input type="submit" class="btn btn-info btn-block mb-3" value="{{ title }}"> 
-              </form>
-              <div class="text-center">
-                <p>or ...</p>
-                <a href="{% url 'quiz:login' %}" class="btn btn-success">Login</a>
-              </div>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>JSQuiz | SignIn</title>
+    <link rel="shortcut icon" href="{% static 'assets/img/title.png' %}" type="image/png">
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/form.css' %}" rel="stylesheet">
+</head>
+
+
+<body>
+
+<header id="header1" class="fixed-top ">
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-xl-9 d-flex align-items-center justify-content-between">
+                <h1 class="logo"><img src="{% static 'assets/img/bitlogo.png' %}" style="width: 35px"><img
+                        src="{% static 'assets/img/clogo.png' %}" style="width: 40px"></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+                <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <!-- <li class="active"><a href="index.html">Home</a></li> -->
+<!--              <li><a href="{% url 'quiz:home' %}">Home</a></li>-->
+<!--              <li><a href="{% url 'quiz:leaderboard' %}">LeaderBoard</a></li>-->
+              {% if not request.user.is_active %}
+              <li><a href="{% url 'quiz:leaderboard' %}" ><i class="fas fa-book-reader" aria-hidden="true"></i> LeaderBoard</a></li>
+              <li><a href="{% url 'quiz:login' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i>LogIn</a></li>
+              {% else %}
+              <li><a href="{% url 'quiz:play' %}" >Welcome, {{ request.user.username }} | </a></li>
+              <li><a href="{% url 'quiz:play' %}" ><i class="fas fa-play" aria-hidden="true"></i> Lets Play</a></li>
+              <li><a href="{% url 'quiz:logout' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a></li>
+              {% endif %}
+
+
+            </ul>
+          </nav><!-- .nav-menu -->
             </div>
-          </div>
         </div>
-      </div>
 
-{% else %}
-
-    <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">
-      <div class="container text-center">
-        <h1 class="display-1 text-info">Let's Quiz</h1>
+    </div>
+</header><!-- End Header -->
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% if not request.user.is_active %}
+    <form method="POST" action="" id="login-form" class="login-form" autocomplete="off" role="main">
+        {% csrf_token %}
+        <h1 class="a11y-hidden">Login Form</h1>
+        <div>
+            <label>
+                <span class="required">Username</span>
+                <input type="text" class="text" name="username" id="username" placeholder="Username" tabindex="1" required/>
+                <p style="font-size: 10px; margin-bottom:.2rem;">Required. 150 characters or fewer.</p>
+                <p style="font-size: 10px; margin-bottom:.2rem;">Letters, digits and @/./+/-/_ only.</p>
+            </label>
+        </div>
+        <div>
+            <label class="label-email">
+                <span class="required">Email</span>
+                <input type="email" class="text" name="email" id="email" placeholder="Email" tabindex="1" required/>
+            </label>
+        </div>
+        <div>
+            <label class="label-email">
+                <span class="required">First name</span>
+                <input type="text" class="text" name="first_name" placeholder="Firstname" id="first_name" tabindex="1" required/>
+            </label>
+        </div>
+        <div>
+            <label class="label-email">
+                <span class="required">Last name</span>
+                <input type="text" class="text" name="last_name" placeholder="Lastname"  id="last_name" tabindex="1" required/>
+            </label>
+        </div>
+        <div>
+            <label class="label-password">
+                <span class="required">Password</span>
+                <input type="text" class="text" name="password1" placeholder="Password" id="password1" tabindex="2" required/>
+                <p style="font-size: 10px; margin-bottom:.2rem;">Your password can't be too similar to your</p>
+                <p style="font-size: 10px; margin-bottom:.2rem;">other personal information.</p>
+                <p style="font-size: 10px; margin-bottom:.2rem;">Your password must contain at least 8 characters.</p>
+                <p style="font-size: 10px; margin-bottom:.2rem;">Your password can't be a commonly used password.</p>
+                <p style="font-size: 10px; margin-bottom:.2rem;">Your password can't be entirely numeric.</p>
+            </label>
+        </div>
+        <div>
+            <label class="label-password">
+                <span class="required">Password confirmation</span>
+                <input type="text" class="text" name="password2" placeholder="Password" id="password2" tabindex="2" required/>
+            </label>
+        </div>
+        <input class="get-started-form scrollto" type="submit" value="Create account"/>
+        <br>
+        <div class="text-center">
+            <p style="font-size: 10px; margin-bottom:.2rem;">or ...</p>
+            <a href="{% url 'quiz:login' %}" class="get-started-form scrollto"><i class="fa fa-sign-in"
+                                                                                     aria-hidden="true"></i> Log in</a>
+        </div>
+        <!-- <div class="email">
+          <a href="#">Forgot password?</a>
+        </div> -->
+    </form>
+    {% else %}
+            <h1 class="display-1 text-info">JS Quiz</h1>
+    <h6 class="display-1 text-info">Welcome, {{ request.user.username }} | </h6>
         <p class="display-4 d-none d-sm-block">Test your skills and become a master.</p>
         <p class="lead">We organize quizzes on various topics.</p>
         <a href="{% url 'quiz:play' %}" class="btn btn-lg btn-info mt-1">Let's play</a>
         <a href="{% url 'quiz:leaderboard' %}" class="btn btn-lg btn-info mt-1">Leaderboard</a>
-      </div>  
-    </section>
+    {% endif %}
+</div>
+<div>
 
-{% endif %}
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
 
-{% endblock content %}
+    <!-- Template Main JS File -->
+    <script src="https://kit.fontawesome.com/23cd0e260d.js" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+</div>
+</body>
+</html>
