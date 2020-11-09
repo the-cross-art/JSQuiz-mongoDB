@@ -1,42 +1,5 @@
 {% load static %}
 
-<!--{% if not request.user.is_active %}-->
-
-<!--     <div class="jumbotron jumbotron-fluid">-->
-<!--        <div class="container">-->
-<!--          <div class="row">-->
-<!--            <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4">-->
-<!--              <h1 class="mb-3 text-center">Create a new account</h1>-->
-<!--              <form class="mb-3" method="POST" action="">-->
-<!--                {% csrf_token %}-->
-<!--		        {{form}}-->
-<!--		        <input type="submit" class="btn btn-info btn-block mb-3" value="{{ title }}"> -->
-<!--              </form>-->
-<!--              <div class="text-center">-->
-<!--                <p>or ...</p>-->
-<!--                <a href="{% url 'quiz:login' %}" class="btn btn-success">Login</a>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--{% else %}-->
-
-<!--    <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">-->
-<!--      <div class="container text-center">-->
-<!--        <h1 class="display-1 text-info">Let's Quiz</h1>-->
-<!--        <p class="display-4 d-none d-sm-block">Test your skills and become a master.</p>-->
-<!--        <p class="lead">We organize quizzes on various topics.</p>-->
-<!--        <a href="{% url 'quiz:play' %}" class="btn btn-lg btn-info mt-1">Let's play</a>-->
-<!--        <a href="{% url 'quiz:leaderboard' %}" class="btn btn-lg btn-info mt-1">Leaderboard</a>-->
-<!--      </div>  -->
-<!--    </section>-->
-
-<!--{% endif %}-->
-
-
-
 <html>
 
 <head>
@@ -83,30 +46,22 @@
                 <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
                 <nav class="nav-menu d-none d-lg-block">
-                    <ul>
-                        <!-- <li class="active"><a href="index.html">Home</a></li> -->
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">LeaderBoard</a></li>
+            <ul>
+              <!-- <li class="active"><a href="index.html">Home</a></li> -->
+<!--              <li><a href="{% url 'quiz:home' %}">Home</a></li>-->
+<!--              <li><a href="{% url 'quiz:leaderboard' %}">LeaderBoard</a></li>-->
+              {% if not request.user.is_active %}
+              <li><a href="{% url 'quiz:leaderboard' %}" ><i class="fas fa-book-reader" aria-hidden="true"></i> LeaderBoard</a></li>
+              <li><a href="{% url 'quiz:login' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i>LogIn</a></li>
+              {% else %}
+              <li><a href="{% url 'quiz:play' %}" >Welcome, {{ request.user.username }} | </a></li>
+              <li><a href="{% url 'quiz:play' %}" ><i class="fas fa-play" aria-hidden="true"></i> Lets Play</a></li>
+              <li><a href="{% url 'quiz:logout' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a></li>
+              {% endif %}
 
 
-                    </ul>
-                </nav><!-- .nav-menu -->
-
-                <a href="#about" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> LogIn</a>
-                <!-- <nav class="nav-menu d-none d-lg-block">
-                  <ul>
-                    {% if not request.user.is_active %}
-                    <li><a href="{% url 'quiz:leaderboard' %}" ><i class="fas fa-book-reader"></i></i> LeaderBoard</a></li>
-                    <li><a href="{% url 'quiz:login' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i> LogIn</a></li>
-                    {% else %}
-                    <h6 class="get-started-btn scrollto">Welcome, {{ request.user.username }} | </h6>
-                    <li><a href="{% url 'quiz:play' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i> Lets Play</a></li>
-                    <li><a href="{% url 'quiz:logout' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a></li>
-                    {% endif %}
-
-
-                  </ul>
-                </nav> -->
+            </ul>
+          </nav><!-- .nav-menu -->
             </div>
         </div>
 

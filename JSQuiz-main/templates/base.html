@@ -47,21 +47,23 @@
           <nav class="nav-menu d-none d-lg-block">
             <ul>
               <!-- <li class="active"><a href="index.html">Home</a></li> -->
-              <li><a href="{% url 'quiz:home' %}">Home</a></li>
-              <li><a href="{% url 'quiz:leaderboard' %}">LeaderBoard</a></li>
+<!--              <li><a href="{% url 'quiz:home' %}">Home</a></li>-->
+<!--              <li><a href="{% url 'quiz:leaderboard' %}">LeaderBoard</a></li>-->
+              {% if not request.user.is_active %}
+              <li><a href="{% url 'quiz:leaderboard' %}" ><i class="fas fa-trophy"></i></i> LeaderBoard</a></li>
+              <li><a href="{% url 'quiz:login' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i>LogIn</a></li>
+              {% else %}
+              <li><a href="{% url 'quiz:play' %}" > <i class="fas fa-book-reader" aria-hidden="true"></i> Welcome, {{ request.user.username }} | </a></li>
+              <li><a href="{% url 'quiz:play' %}" ><i class="fas fa-play" aria-hidden="true"></i> Lets Play</a></li>
+              <li><a href="{% url 'quiz:logout' %}" ><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a></li>
+              {% endif %}
 
 
             </ul>
           </nav><!-- .nav-menu -->
 
-            {% if not request.user.is_active %}
-          <a href="{% url 'quiz:login' %}" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> LogIn</a>
-            <a href="{% url 'quiz:register' %}" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> Register</a>
-            {% else %}
-            <h6 class="get-started-btn scrollto">Welcome, {{ request.user.username }} | </h6>
-            <a href="{% url 'quiz:play' %}" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> Lets Play</a>
-            <a href="{% url 'quiz:logout' %}" class="get-started-btn scrollto"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
-            {% endif %}
+
+
         </div>
       </div>
 

@@ -14,11 +14,14 @@
           <h2>Test your skills and become a master.</h2>
           <!-- <h4>Right from the inception of intellect in man, there has been a zeal in the brainiacs to prove their potential in front of the entire world. ‘Scientica’- a mind buzzing carnival witnessing the battle of the best minds, from different corners of the entire nation, in an enthralling game of general & technical quiz, which provides opportunity to the enthusiasts of today</h4> -->
           <h4>Start Your Test Here:</h4>
+
           {% if not request.user.is_active %}
+
           <a href="{% url 'quiz:register' %}" class="get-started-btn scrollto"><i class="fa fa-user-plus" aria-hidden="true"></i> SignUp</a>
-          <a href="{% url 'quiz:login' %}" class="get-started-btn scrollto"><i class="fa fa-user-plus" aria-hidden="true"></i> Login</a>
+<!--          <a href="{% url 'quiz:login' %}" class="get-started-btn scrollto"><i class="fa fa-user-plus" aria-hidden="true"></i> Login</a>-->
           {% else %}
-        <a href="#about" class="get-started-btn scrollto"><i class="fa fa-user-plus" aria-hidden="true"></i> Lets Play</a>
+          <a href="{% url 'quiz:play' %}" class="get-started-btn scrollto"><i class="fas fa-play" aria-hidden="true"></i> Let's play</a>
+          <a href="{% url 'quiz:leaderboard' %}" class="get-started-btn scrollto"><i class="fas fa-book-reader" aria-hidden="true"></i> Leaderboard</a>
 
         {% endif %}
 

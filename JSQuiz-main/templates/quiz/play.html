@@ -2,15 +2,31 @@
 
 {% block content %}
 {% if question is None %}
+<div class = "container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">
+      <div class="container text-center">
+        <h1 class="display-1">You have already answered all of our questions. </h1>
 
-    <h1> You have already answered all of our questions. </h1>
-
+      </div>
+    </section>
+    <h1> </h1>
+</div>
 {% else %}
 
 <div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   <div class="jumbotron my-4">
 
-    <h3 class="text-info">{{ question.html|safe }}</h3>
+    <h3>{{ question.html|safe }}</h3>
     <form class="form" action="" method="post">
         {% csrf_token %}
         <input type="hidden" name="question_pk" value="{{ question.pk }}">
@@ -23,7 +39,8 @@
           </div>
 
         {% endfor %}
-        <input class="btn btn-info btn-lg" type="submit" value="Submit">  
+        <br>
+        <input class="get-started-btn scrollto" type="submit" value="Submit">
     </form>
   </div>
 </div>
