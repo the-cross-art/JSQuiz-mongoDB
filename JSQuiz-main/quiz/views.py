@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from .models import QuizProfile, Question, AttemptedQuestion
 from .forms import UserLoginForm, RegistrationForm
+from  django.contrib import messages
 
 
 def home(request):
@@ -89,7 +90,8 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/login')
+            messages.success(request, 'You have Successfully Registered')
+            #return redirect('/login')
     else:
         form = RegistrationForm()
 
